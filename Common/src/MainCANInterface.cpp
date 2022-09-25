@@ -49,6 +49,7 @@ void MainCANInterface::message_handler() {
                 PowerAuxError can_struct;
                 can_struct.deserialize(&message);
                 handle(&can_struct);
+                /*
             } else if (message.id == SolarCurrent_MESSAGE_ID) {
                 SolarCurrent can_struct;
                 can_struct.deserialize(&message);
@@ -77,6 +78,7 @@ void MainCANInterface::message_handler() {
                 MotorControllerError can_struct;
                 can_struct.deserialize(&message);
                 handle(&can_struct);
+            */
             } else if (message.id == BPSPackInformation_MESSAGE_ID) {
                 BPSPackInformation can_struct;
                 can_struct.deserialize(&message);

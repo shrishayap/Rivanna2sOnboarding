@@ -18,9 +18,8 @@ mbed_create_distro(mbed-os-lib mbed-os mbed-events mbed-rtos)
 add_subdirectory(Common)
 
 add_subdirectory(ECU)
-add_subdirectory(Motor)
 add_subdirectory(PowerAux)
-add_subdirectory(Solar)
+
 
 option(VERBOSE_BUILD "Have a verbose build process")
 if(VERBOSE_BUILD)

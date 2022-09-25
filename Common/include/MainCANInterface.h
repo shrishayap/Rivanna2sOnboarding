@@ -27,6 +27,7 @@ class MainCANInterface : public CANInterface {
     virtual void handle(ECUMotorCommands *can_struct) {}
     virtual void handle(ECUPowerAuxCommands *can_struct) {}
     virtual void handle(PowerAuxError *can_struct) {}
+    /*
     virtual void handle(SolarCurrent *can_struct) {}
     virtual void handle(SolarVoltage *can_struct) {}
     virtual void handle(SolarTemp *can_struct) {}
@@ -34,6 +35,7 @@ class MainCANInterface : public CANInterface {
     virtual void handle(MotorControllerPowerStatus *can_struct) {}
     virtual void handle(MotorControllerDriveStatus *can_struct) {}
     virtual void handle(MotorControllerError *can_struct) {}
+    */
     virtual void handle(BPSPackInformation *can_struct) {}
     virtual void handle(BPSError *can_struct) {}
     virtual void handle(BPSCellVoltage *can_struct) {}
