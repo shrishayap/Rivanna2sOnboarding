@@ -21,7 +21,7 @@ BPSCANInterface bps_can_interface(BMS_CAN1_RX, BMS_CAN1_TX, BMS_CAN1_STBY);
 bool flashHazards, flashLSignal, flashRSignal = false;
 Thread signalFlashThread;
 
-DigitalOut brake_lights(BRAKE_LIGHT_EN);
+//DigitalOut brake_lights(BRAKE_LIGHT_EN);
 DigitalOut leftTurnSignal(LEFT_TURN_EN);
 DigitalOut rightTurnSignal(RIGHT_TURN_EN);
 
@@ -32,7 +32,7 @@ void signalFlashHandler() {
                 bool leftTurnSignalState = leftTurnSignal;
                 leftTurnSignal = !leftTurnSignalState;
                 rightTurnSignal = !leftTurnSignalState;
-            } else if (flashLSignal) {
+            } /*else if (flashLSignal) {
                 leftTurnSignal = !leftTurnSignal;
                 rightTurnSignal = false;
             } else if (flashRSignal) {
@@ -42,7 +42,7 @@ void signalFlashHandler() {
                 leftTurnSignal = false;
                 rightTurnSignal = false;
             }
-
+            */
             ThisThread::sleep_for(FLASH_PERIOD);
         } else {
             leftTurnSignal = false;
@@ -62,7 +62,7 @@ Thread peripheral_error_thread;
 
 BPSRelayController bps_relay_controller(HORN_EN, DRL_EN, AUX_PLUS,
                                         BMS_STROBE_EN);
-
+/*
 void peripheral_error_handler() {
     PowerAuxError msg;
     while (true) {
@@ -81,26 +81,31 @@ void peripheral_error_handler() {
         ThisThread::sleep_for(ERROR_CHECK_PERIOD);
     }
 }
+*/
 
 int main() {
+    /*
     log_set_level(LOG_LEVEL);
     log_debug("Start main()");
+    */
 
     signalFlashThread.start(signalFlashHandler);
-    peripheral_error_thread.start(peripheral_error_handler);
-
+    //peripheral_error_thread.start(peripheral_error_handler);
+    /*
     while (true) {
         log_debug("Main thread loop");
 
         ThisThread::sleep_for(MAIN_LOOP_PERIOD);
     }
+    */
 }
 
 void PowerAuxCANInterface::handle(ECUPowerAuxCommands *can_struct) {
+    /*
     can_struct->log(LOG_INFO);
 
     brake_lights = can_struct->brake_lights;
-
+    */
     flashLSignal = can_struct->left_turn_signal;
     flashRSignal = can_struct->right_turn_signal;
     flashHazards = can_struct->hazards;
